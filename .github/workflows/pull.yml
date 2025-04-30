@@ -1,0 +1,26 @@
+name: Docker Pull
+
+on:
+  push:
+
+env:
+  IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/os-checker:local
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: List Docker Images
+        run: docker images --all && df -alh
+
+      - name: Pull os-checker:local
+        run: docker pull ${{ env.IMAGE }}
+
+      - name: List Docker Images
+        run: docker images --all && df -alh
+      
+      - name: Run os-checker container
+        run: docker run os-checker:local --help
