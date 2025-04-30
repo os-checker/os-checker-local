@@ -1,28 +1,31 @@
 set -xe
 
+export CARGO_TERM_COLOR=always
+
+echo $PWD
 export INSTALL=install
 
 mkdir $INSTALL
 pushd $INSTALL
+echo $PWD
 
 # Install Rudra
 git clone https://github.com/os-checker/Rudra.git $INSTALL/rudra
-pushd $INSTALL/rudra
+pushd rudra
 cargo install --path . --locked
 cargo rudra --help
 popd
 
 # Install Mirai
 git clone https://github.com/os-checker/MIRAI.git $INSTALL/mirai
-pushd $INSTALL/mirai
+pushd mirai
 cargo install --path checker --no-default-features -F z3,z3-sys --locked
 cargo mirai --help
 popd
 
 # Install Rap
-
 git clone https://github.com/os-checker/RAP.git $INSTALL/rap
-pushd $INSTALL/rap
+pushd rapx
 cd rap
 cargo install --path .
 cargo rapx --help
@@ -30,14 +33,15 @@ popd
 
 # Install Lockbud
 git clone https://github.com/os-checker/lockbud.git $INSTALL/lockbud
-pushd $INSTALL/lockbud
+pushd lockbud
 git switch all
 cargo install --path . --locked
 cargo lockbud --help
 popd
 
-# back to $PWD
+# Back to $PWD
 popd
+echo $PWD
 # Set up default toolchain
 rustup default nightly-2025-04-30
 
