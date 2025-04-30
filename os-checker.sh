@@ -1,6 +1,6 @@
 set -xe
 
-export INSTALL=$PWD/install
+export INSTALL=install
 
 mkdir $INSTALL
 pushd $INSTALL
@@ -25,7 +25,7 @@ git clone https://github.com/os-checker/RAP.git $INSTALL/rap
 pushd $INSTALL/rap
 cd rap
 cargo install --path .
-cargo rap --help
+cargo rapx --help
 popd
 
 # Install Lockbud
@@ -36,9 +36,11 @@ cargo install --path . --locked
 cargo lockbud --help
 popd
 
+# back to $PWD
 popd
 # Set up default toolchain
 rustup default nightly-2025-04-30
 
 #Install os-checker
 cargo install --git https://github.com/os-checker/os-checker.git os-checker
+os-checker --help
