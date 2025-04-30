@@ -2,8 +2,8 @@
   "solana-foundation/anchor": {
     "meta": {
       "skip_pkg_dir_globs": [
-        "examples/**",
-        "tests/**"
+        "**/examples/**",
+        "**/tests/**"
       ]
     }
   }
