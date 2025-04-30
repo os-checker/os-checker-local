@@ -1,9 +1,11 @@
 set -xe
 
 export CARGO_TERM_COLOR=always
+DEFAULT_TOOLCHAIN=nightly-2025-04-30
 
+# $PWD=/ in the docker container
 echo $PWD
-export INSTALL=install
+INSTALL=install
 
 mkdir $INSTALL
 pushd $INSTALL
@@ -43,7 +45,8 @@ popd
 popd
 echo $PWD
 # Set up default toolchain
-rustup default nightly-2025-04-30
+rustup toolchain install $DEFAULT_TOOLCHAIN
+rustup default $DEFAULT_TOOLCHAIN
 
 #Install os-checker
 cargo install --git https://github.com/os-checker/os-checker.git os-checker
