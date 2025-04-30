@@ -24,9 +24,9 @@ cargo mirai --help
 popd
 
 # Install Rap
-git clone https://github.com/os-checker/RAP.git rap
+git clone https://github.com/os-checker/RAPx.git rapx
 pushd rapx
-cd rap
+cd rapx
 cargo install --path .
 cargo rapx --help
 popd
