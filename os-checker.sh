@@ -10,21 +10,21 @@ pushd $INSTALL
 echo $PWD
 
 # Install Rudra
-git clone https://github.com/os-checker/Rudra.git $INSTALL/rudra
+git clone https://github.com/os-checker/Rudra.git rudra
 pushd rudra
 cargo install --path . --locked
 cargo rudra --help
 popd
 
 # Install Mirai
-git clone https://github.com/os-checker/MIRAI.git $INSTALL/mirai
+git clone https://github.com/os-checker/MIRAI.git mirai
 pushd mirai
 cargo install --path checker --no-default-features -F z3,z3-sys --locked
 cargo mirai --help
 popd
 
 # Install Rap
-git clone https://github.com/os-checker/RAP.git $INSTALL/rap
+git clone https://github.com/os-checker/RAP.git rap
 pushd rapx
 cd rap
 cargo install --path .
@@ -32,7 +32,7 @@ cargo rapx --help
 popd
 
 # Install Lockbud
-git clone https://github.com/os-checker/lockbud.git $INSTALL/lockbud
+git clone https://github.com/os-checker/lockbud.git lockbud
 pushd lockbud
 git switch all
 cargo install --path . --locked
