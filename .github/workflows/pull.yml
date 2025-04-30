@@ -23,4 +23,4 @@ jobs:
         run: docker images --all && df -alh
       
       - name: Run os-checker container
-        run: docker run os-checker:local --help
+        run: docker run ${{ env.IMAGE }} --help
