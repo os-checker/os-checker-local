@@ -11,3 +11,6 @@ jobs:
 
       - name: Build Dockerfile
         run: docker build -t os-checker-local .
+
+      - name: Run Dockerfile
+        run: docker run os-checker layout --config config.json
