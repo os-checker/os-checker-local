@@ -7,7 +7,7 @@ env:
   IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/os-checker:local
 
 jobs:
-  build:
+  pull:
     runs-on: ubuntu-latest
     if: true
     steps:
@@ -23,4 +23,4 @@ jobs:
         run: docker images --all && df -alh
       
       - name: Run os-checker container
-        run: docker run ${{ env.IMAGE }} --help
+        run: docker run ${{ env.IMAGE }} os-checker --help
