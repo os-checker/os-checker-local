@@ -1,4 +1,4 @@
-name: Docker Push
+name: Docker
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
           # cache-to: type=gha,mode=max
           # outputs: type=docker,dest=${{ env.IMAGE_TAR }}
 
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
     if: true
     # needs: push
@@ -54,13 +54,6 @@ jobs:
 
       - name: List Docker Images
         run: docker images --all && df -alh
-
-  pull:
-    runs-on: ubuntu-latest
-    if: true
-    needs: build
-    steps:
-      - uses: actions/checkout@v4
 
       - name: Run os-checker container
         run: docker run -v /${{ github.workspace }}:/check os-checker "os-checker --help"
