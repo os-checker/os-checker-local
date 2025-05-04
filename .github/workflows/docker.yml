@@ -9,7 +9,7 @@ env:
 jobs:
   push:
     runs-on: ubuntu-latest
-    if: true
+    if: false
     steps:
       - uses: actions/checkout@v4
 
@@ -38,7 +38,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: true
-    needs: push
+    # needs: push
     steps:
       - uses: actions/checkout@v4
 
@@ -50,7 +50,7 @@ jobs:
 
       - name: Build os-checker
         working-directory: ./layer1_install-os-checker
-        run: docker -t os-checker .
+        run: docker build -t os-checker .
 
       - name: List Docker Images
         run: docker images --all && df -alh
