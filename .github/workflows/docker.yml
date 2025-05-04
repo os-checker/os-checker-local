@@ -33,7 +33,7 @@ jobs:
           tags: ${{ env.IMAGE }}
           # cache-from: type=gha
           # cache-to: type=gha,mode=max
-          outputs: type=docker,dest=${{ env.IMAGE_TAR }}
+          # outputs: type=docker,dest=${{ env.IMAGE_TAR }}
 
   build:
     runs-on: ubuntu-latest
