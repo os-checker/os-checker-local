@@ -23,7 +23,7 @@ RUN git clone https://github.com/os-checker/os-checker.github.io.git webui && \
 
 # don't clear cache.redb⋅
 RUN git clone https://github.com/os-checker/os-checker.git && \
-  cd os-checker && git switch setup && export CARGO_TARGET_DIR=$PWD/target && \
+  cd os-checker && export CARGO_TARGET_DIR=$PWD/target && \
   cargo install --path . os-checker --locked && \
   cargo install --path . os-checker --locked --example batch && \
   cargo install --path os-checker-database --locked --no-default-features && \
