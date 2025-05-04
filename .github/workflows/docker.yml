@@ -7,9 +7,9 @@ env:
   IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/os-checker:local
 
 jobs:
-  build:
+  push:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
       - uses: actions/checkout@v4
 
@@ -29,7 +29,37 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
+          file: layer0_install-checkers/Dockerfile
           tags: ${{ env.IMAGE }}
           # cache-from: type=gha
           # cache-to: type=gha,mode=max
           outputs: type=docker,dest=${{ env.IMAGE_TAR }}
+
+  build:
+    runs-on: ubuntu-latest
+    if: true
+    needs: push
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: List Docker Images
+        run: docker images --all && df -alh
+
+      - name: Pull os-checker:local
+        run: docker pull ${{ env.IMAGE }}
+
+      - name: Build os-checker
+        run: docker -t os-checker layer1_install-os-checker
+
+      - name: List Docker Images
+        run: docker images --all && df -alh
+
+  pull:
+    runs-on: ubuntu-latest
+    if: true
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run os-checker container
+        run: docker run -v /${{ github.workspace }}:/check os-checker "os-checker --help"
