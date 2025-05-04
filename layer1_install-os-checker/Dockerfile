@@ -1,8 +1,7 @@
 # Based on a layer where checkers and their toolchains are installed.
 FROM zjpzjp/os-checker:local
 
-SHELL [/bin/bash, -l, -c]
-RUN cargo --version
+SHELL ["/bin/bash", "-lc"]
 
 # Check if checkers are properly installed
 RUN cargo +nightly-2021-10-21 rudra --help && \
@@ -29,5 +28,5 @@ RUN git clone https://github.com/os-checker/os-checker.git && \
   cargo install --path os-checker-database --locked --no-default-features && \
   cd .. && rm os-checker -r
 
-ENTRYPOINT [bash, -l, -c]
+ENTRYPOINT ["bash", "-lc"]
 # CMD ["./run.sh"]
