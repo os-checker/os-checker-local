@@ -28,7 +28,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          path: ./layer0_install-checkers/Dockerfile
+          file: ./layer0_install-checkers/Dockerfile
+          context: ./layer0_install-checkers
           tags: ${{ env.IMAGE }}
           # cache-from: type=gha
           # cache-to: type=gha,mode=max
